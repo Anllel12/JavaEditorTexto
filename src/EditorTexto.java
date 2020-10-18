@@ -55,6 +55,7 @@ public class EditorTexto extends javax.swing.JFrame {
 
         jMNuevo.setText("Archivo");
 
+        jMINuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMINuevo.setText("Nuevo");
         jMINuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +64,7 @@ public class EditorTexto extends javax.swing.JFrame {
         });
         jMNuevo.add(jMINuevo);
 
+        jMIAbrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMIAbrir.setText("Abrir");
         jMIAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,10 +73,22 @@ public class EditorTexto extends javax.swing.JFrame {
         });
         jMNuevo.add(jMIAbrir);
 
+        jMIGuardar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMIGuardar.setText("Guardar");
+        jMIGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIGuardarActionPerformed(evt);
+            }
+        });
         jMNuevo.add(jMIGuardar);
 
+        jMIGuardarComo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.SHIFT_DOWN_MASK | java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMIGuardarComo.setText("Guardar como");
+        jMIGuardarComo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIGuardarComoActionPerformed(evt);
+            }
+        });
         jMNuevo.add(jMIGuardarComo);
 
         jMenuBar1.add(jMNuevo);
@@ -136,6 +150,40 @@ public class EditorTexto extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jMIAbrirActionPerformed
+
+    private void jMIGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGuardarActionPerformed
+        int seleccion = jFileChooser1.showSaveDialog(this);
+        
+        if (seleccion == JFileChooser.APPROVE_OPTION) {//si entra aqui es porque han pulsado el boton guardar
+            File fichero = jFileChooser1.getSelectedFile();
+            
+            try {
+                BufferedWriter bw=new BufferedWriter(new FileWriter(fichero));
+                
+                bw.write(jTextArea1.getText());
+                bw.close();
+            } catch (IOException e) {
+                System.out.println("Error en la escritura");
+            }
+        }
+    }//GEN-LAST:event_jMIGuardarActionPerformed
+
+    private void jMIGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGuardarComoActionPerformed
+        int seleccion = jFileChooser1.showSaveDialog(this);
+        
+        if (seleccion == JFileChooser.APPROVE_OPTION) {//si entra aqui es porque han pulsado el boton guardar
+            File fichero = jFileChooser1.getSelectedFile();
+            
+            try {
+                BufferedWriter bw=new BufferedWriter(new FileWriter(fichero)); // creo el buffer para que lo guarde en el ficheero
+                
+                bw.write(jTextArea1.getText());
+                bw.close();
+            } catch (IOException e) {
+                System.out.println("Error en la escritura");
+            }
+        }
+    }//GEN-LAST:event_jMIGuardarComoActionPerformed
     
     /**
      * @param args the command line arguments

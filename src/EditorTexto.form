@@ -13,6 +13,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMINuevo">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+N"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Nuevo"/>
               </Properties>
               <Events>
@@ -21,6 +24,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMIAbrir">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+O"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Abrir"/>
               </Properties>
               <Events>
@@ -29,13 +35,25 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMIGuardar">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+S"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIGuardarActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMIGuardarComo">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Shift+Ctrl+S"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Guardar como"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMIGuardarComoActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
