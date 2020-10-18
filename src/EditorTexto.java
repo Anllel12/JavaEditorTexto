@@ -135,10 +135,17 @@ public class EditorTexto extends javax.swing.JFrame {
                     BufferedReader br = new BufferedReader(new FileReader(fichero));//pongo fichero para que lea la ruta
                     
                     String valor = "";
+                    String aux = "";
                     
                     while ((valor=br.readLine()) != null){
-                        jTextArea1.setText(valor);
-                    }
+                        if(aux == ""){
+                            aux = valor;//esto es para que no salga una primera linea en blanco al abrirlo
+                        }else{
+                            aux = aux + "\n" +valor;
+                        }
+                                        
+                        jTextArea1.setText(aux);
+                    }                   
                     br.close();
                 }
                 catch (FileNotFoundException ex) {
