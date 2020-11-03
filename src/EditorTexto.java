@@ -117,11 +117,11 @@ public class EditorTexto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    // Pone en blanco el jText
     private void jMINuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMINuevoActionPerformed
         jTextArea1.setText("");
     }//GEN-LAST:event_jMINuevoActionPerformed
-
+    // Abre los txt y xml que le digas en el jFileChooser
     private void jMIAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAbrirActionPerformed
         jFileChooser1.setFileFilter(new FileNameExtensionFilter("arhivos de documentos xml", "xml"));//seleccionar un archivo
         jFileChooser1.setFileFilter(new FileNameExtensionFilter("arhivos de documentos txt", "txt"));
@@ -160,9 +160,13 @@ public class EditorTexto extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jMIAbrirActionPerformed
-
+    /*
+    *Guarda el texto de jText. Si no lo has guardado
+    *una primera vez te sale el jFileChooser y 
+    *a la segunda te lo gardaria en el archivo anterior.
+    */  
     private void jMIGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGuardarActionPerformed
-        if(guardado){
+        if(guardado){// comprueba si ya has guardado
             int seleccion = jFileChooser1.showSaveDialog(this);
         
             if (seleccion == JFileChooser.APPROVE_OPTION) {//si entra aqui es porque han pulsado el boton guardar
@@ -177,9 +181,9 @@ public class EditorTexto extends javax.swing.JFrame {
                     System.out.println("Error en la escritura");
                 }
             }
-            guardado = false;
+            guardado = false;// lo pongo en false para que cuando le de a guardar te lo guarde en la misma ruta
         }
-        else{
+        else{// entra aqui porque ya ha guardado una vez y lo guardadra otra vez en la ruta anteriormente dicha
             System.out.println(fichero2);
             try {
                     BufferedWriter bw=new BufferedWriter(new FileWriter(fichero2));
@@ -191,7 +195,9 @@ public class EditorTexto extends javax.swing.JFrame {
                 }
         }
     }//GEN-LAST:event_jMIGuardarActionPerformed
-
+    /*
+    *Guarda el texto de jText en el archivo que le digas e indica que ya lo has guardado.
+    */
     private void jMIGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGuardarComoActionPerformed
         int seleccion = jFileChooser1.showSaveDialog(this);
         
@@ -199,8 +205,9 @@ public class EditorTexto extends javax.swing.JFrame {
             File fichero = jFileChooser1.getSelectedFile();
             
             try {
-                BufferedWriter bw=new BufferedWriter(new FileWriter(fichero)); // creo el buffer para que lo guarde en el ficheero
-                
+                BufferedWriter bw=new BufferedWriter(new FileWriter(fichero)); // creo el buffer para que lo guarde en el fichero
+                guardado = false;// lo pongo en false para que cuando le de a guardar te lo guarde en la misma ruta
+                fichero2 = fichero;
                 bw.write(jTextArea1.getText());
                 bw.close();
             } catch (IOException e) {
