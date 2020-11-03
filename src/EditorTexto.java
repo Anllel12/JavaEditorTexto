@@ -21,6 +21,9 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class EditorTexto extends javax.swing.JFrame {
     
+    Boolean guardado = true;
+    File fichero2;
+    
     /**
      * Creates new form EditorTexto
      */
@@ -116,7 +119,7 @@ public class EditorTexto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMINuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMINuevoActionPerformed
-        
+        jTextArea1.setText("");
     }//GEN-LAST:event_jMINuevoActionPerformed
 
     private void jMIAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIAbrirActionPerformed
@@ -159,19 +162,33 @@ public class EditorTexto extends javax.swing.JFrame {
     }//GEN-LAST:event_jMIAbrirActionPerformed
 
     private void jMIGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIGuardarActionPerformed
-        int seleccion = jFileChooser1.showSaveDialog(this);
+        if(guardado){
+            int seleccion = jFileChooser1.showSaveDialog(this);
         
-        if (seleccion == JFileChooser.APPROVE_OPTION) {//si entra aqui es porque han pulsado el boton guardar
-            File fichero = jFileChooser1.getSelectedFile();
-            
-            try {
-                BufferedWriter bw=new BufferedWriter(new FileWriter(fichero));
-                
-                bw.write(jTextArea1.getText());
-                bw.close();
-            } catch (IOException e) {
-                System.out.println("Error en la escritura");
+            if (seleccion == JFileChooser.APPROVE_OPTION) {//si entra aqui es porque han pulsado el boton guardar
+                File fichero = jFileChooser1.getSelectedFile();
+                fichero2 = fichero;
+                try {
+                    BufferedWriter bw=new BufferedWriter(new FileWriter(fichero));
+
+                    bw.write(jTextArea1.getText());
+                    bw.close();
+                } catch (IOException e) {
+                    System.out.println("Error en la escritura");
+                }
             }
+            guardado = false;
+        }
+        else{
+            System.out.println(fichero2);
+            try {
+                    BufferedWriter bw=new BufferedWriter(new FileWriter(fichero2));
+
+                    bw.write(jTextArea1.getText());
+                    bw.close();
+                } catch (IOException e) {
+                    System.out.println("Error en la escritura");
+                }
         }
     }//GEN-LAST:event_jMIGuardarActionPerformed
 
